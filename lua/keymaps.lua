@@ -5,6 +5,8 @@
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Open file explorer for the current file's directory
+vim.keymap.set('n', '<C-x>', ':Explore<CR>', { noremap = true, silent = true, desc = 'Explore current directory' })
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
