@@ -51,13 +51,13 @@ move $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
 
 ```bash
 # Linux/macOS
-git clone https://github.com/<your_github_username>/neovim-dotfiles.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+git clone https://github.com/Gauransh-Homelab/neovim-dotfiles.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 
 # Windows (PowerShell)
-git clone https://github.com/<your_github_username>/neovim-dotfiles.git "$env:LOCALAPPDATA\nvim"
+git clone https://github.com/Gauransh-Homelab/neovim-dotfiles.git "$env:LOCALAPPDATA\nvim"
 
 # Windows (Command Prompt)
-git clone https://github.com/<your_github_username>/neovim-dotfiles.git "%localappdata%\nvim"
+git clone https://github.com/Gauransh-Homelab/neovim-dotfiles.git "%localappdata%\nvim"
 ```
 
 ## First Launch
