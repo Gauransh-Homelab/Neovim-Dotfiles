@@ -1,4 +1,5 @@
 -- Fugitive: Git wrapper
 return {
-  'tpope/fugitive',
+  'tpope/vim-fugitive',
 }
+
