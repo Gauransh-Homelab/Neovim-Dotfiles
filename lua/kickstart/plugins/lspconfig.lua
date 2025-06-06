@@ -23,6 +23,9 @@ return {
       'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
+      -- JSON schemas for better YAML/JSON support
+      'b0o/schemastore.nvim',
+
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
 
@@ -208,23 +211,69 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
-        --
+        -- DevSecOps Language Servers
+        bashls = {
+          filetypes = { 'sh', 'bash' },
+        },
+        yamlls = {
+          settings = {
+            yaml = {
+              schemas = {
+                ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*',
+                ['https://json.schemastore.org/ansible-stable-2.9.json'] = '/playbooks/**/*.yml',
+                ['https://json.schemastore.org/ansible-playbook.json'] = '/playbooks/**/*.yaml',
+                ['https://json.schemastore.org/docker-compose.json'] = 'docker-compose*.yml',
+                ['https://json.schemastore.org/kustomization.json'] = 'kustomization.yaml',
+                kubernetes = '*.yaml',
+              },
+              validate = true,
+              completion = true,
+            },
+          },
+        },
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = 'workspace',
+                useLibraryCodeForTypes = true,
+                typeCheckingMode = 'strict',
+              },
+            },
+          },
+        },
+        gopls = {
+          settings = {
+            gopls = {
+              analyses = {
+                unusedparams = true,
+                shadow = true,
+              },
+              staticcheck = true,
+              gofumpt = true,
+            },
+          },
+        },
+        -- JSON for configuration files
+        jsonls = {
+          settings = {
+            json = {
+              schemas = require('schemastore').json.schemas(),
+              validate = { enable = true },
+            },
+          },
+        },
+        -- Dockerfile
+        dockerls = {},
+        -- Terraform
+        terraformls = {},
+        -- TOML for configuration files
+        taplo = {},
+        -- Markdown
+        marksman = {},
 
         lua_ls = {
-          -- cmd = { ... },
-          -- filetypes = { ... },
-          -- capabilities = {},
           settings = {
             Lua = {
               completion = {
@@ -253,6 +302,20 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        -- DevSecOps formatters and linters
+        'black', -- Python formatter
+        'isort', -- Python import sorter
+        'flake8', -- Python linter
+        'mypy', -- Python type checker
+        'gofumpt', -- Go formatter
+        'golangci-lint', -- Go linter
+        'shellcheck', -- Shell script linter
+        'shfmt', -- Shell script formatter
+        'yamllint', -- YAML linter
+        'prettier', -- Multi-language formatter
+        'markdownlint', -- Markdown linter
+        'hadolint', -- Dockerfile linter
+        'tflint', -- Terraform linter
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
