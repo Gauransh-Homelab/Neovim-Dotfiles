@@ -189,10 +189,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = lsp_attach,
 })
 
--- [[ Neo-tree ]]
-vim.keymap.set('n', '\\', function()
-  require('neo-tree.command').execute { toggle = true }
-end, { desc = 'NeoTree toggle' })
+-- [[ Hardtime (Vim Habit Breaking) ]]
+-- Note: Hardtime is configured to be enabled by default in the plugin config
+-- Toggle commands are available if needed:
+vim.keymap.set('n', '<leader>th', function()
+  require('hardtime').toggle()
+end, { desc = '[T]oggle [H]ardtime' })
 
 -- [[ Neogen (Documentation) ]]
 vim.keymap.set('n', '<leader>nf', function()
@@ -208,6 +210,18 @@ vim.keymap.set('n', '<leader>nF', function()
   require('neogen').generate { type = 'file' }
 end, { desc = '[N]eogen [F]ile documentation' })
 
+-- [[ Obsidian (Note Taking) ]]
+vim.keymap.set('n', '<leader>on', ':ObsidianNew<CR>', { desc = '[O]bsidian [N]ew note' })
+vim.keymap.set('n', '<leader>oo', ':ObsidianOpen<CR>', { desc = '[O]bsidian [O]pen note' })
+vim.keymap.set('n', '<leader>os', ':ObsidianSearch<CR>', { desc = '[O]bsidian [S]earch notes' })
+vim.keymap.set('n', '<leader>oq', ':ObsidianQuickSwitch<CR>', { desc = '[O]bsidian [Q]uick switch' })
+vim.keymap.set('n', '<leader>od', ':ObsidianToday<CR>', { desc = '[O]bsidian to[D]ay note' })
+vim.keymap.set('n', '<leader>oy', ':ObsidianYesterday<CR>', { desc = '[O]bsidian [Y]esterday note' })
+vim.keymap.set('n', '<leader>ob', ':ObsidianBacklinks<CR>', { desc = '[O]bsidian [B]acklinks' })
+vim.keymap.set('n', '<leader>ol', ':ObsidianLinks<CR>', { desc = '[O]bsidian [L]inks' })
+vim.keymap.set('n', '<leader>ot', ':ObsidianTemplate<CR>', { desc = '[O]bsidian [T]emplate' })
+vim.keymap.set('n', '<leader>op', ':ObsidianPasteImg<CR>', { desc = '[O]bsidian [P]aste image' })
+vim.keymap.set('n', '<leader>or', ':ObsidianRename<CR>', { desc = '[O]bsidian [R]ename note' })
 
 -- [[ Oil (File Explorer) ]]
 vim.keymap.set('n', '-', function()

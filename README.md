@@ -126,18 +126,19 @@ This configuration is organized into modular files:
 │           ├── autopairs.lua
 │           ├── blink-cmp.lua
 │           ├── conform.lua
+│           ├── copilot.lua
 │           ├── debug.lua
 │           ├── fugitive.lua
 │           ├── gitsigns.lua
+│           ├── hardtime.lua
 │           ├── harpoon.lua
 │           ├── indent_line.lua
 │           ├── lint-enhanced.lua
 │           ├── lint.lua
 │           ├── lspconfig.lua
 │           ├── mini.lua
-│           ├── neo-tree.lua
 │           ├── neogen.lua
-│           ├── neotest.lua
+│           ├── obsidian.lua
 │           ├── oil.lua
 │           ├── telescope.lua
 │           ├── todo-comments.lua
@@ -167,16 +168,7 @@ All keybinds are centrally located in `lua/keymaps.lua`. The `<leader>` key is s
 
 ### 📁 File Management
 
-#### Neo-tree (File Explorer)
-**Plugin**: `nvim-neo-tree/neo-tree.nvim`
-
-- `\` - Toggle Neo-tree file explorer
-- Inside Neo-tree:
-  - `\` - Close Neo-tree window
-  - `<CR>` - Open file/directory
-  - Various navigation commands (see Neo-tree docs)
-
-#### Oil (Modern File Explorer)
+#### Oil (File Explorer)
 **Plugin**: `stevearc/oil.nvim`
 
 - `-` - Open parent directory in Oil
@@ -310,22 +302,30 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 - YAML (yamllint), Dockerfile (hadolint), Terraform (tflint)
 - Markdown (markdownlint), JSON (jsonlint)
 
-### 🧪 Testing
+### 🤖 AI & Development Tools
 
-#### Neotest (Test Runner)
-**Plugin**: `nvim-neotest/neotest`
+#### GitHub Copilot (AI Code Completion)
+**Plugin**: `github/copilot.vim`
 
-- `<leader>tt` - Run nearest test
-- `<leader>tf` - Run all tests in current file
-- `<leader>td` - Debug nearest test
-- `<leader>ts` - Stop test execution
-- `<leader>ta` - Attach to test process
-- `<leader>to` - Open test output
-- `<leader>tO` - Toggle test output panel
-- `<leader>tS` - Toggle test summary
+- `<C-j>` - Accept Copilot suggestion (insert mode)
+- `<C-]>` - Dismiss Copilot suggestion (insert mode)
+- `<C-\>` - Next Copilot suggestion (insert mode)
+- `<C-[>` - Previous Copilot suggestion (insert mode)
 
-**Supported Test Frameworks:**
-- Python (pytest), Go (go test), Bash (bats)
+**Setup:**
+- After installation, run `:Copilot auth` to authenticate
+- Suggestions appear automatically while typing
+
+#### Hardtime (Vim Habit Training)
+**Plugin**: `m4xshen/hardtime.nvim`
+
+- `<leader>th` - Toggle Hardtime on/off
+
+**Features:**
+- Prevents repeated use of arrow keys and hjkl
+- Encourages use of more efficient Vim motions
+- Configurable restrictions and hints
+- Disabled in certain filetypes (telescope, oil, etc.)
 
 ### 🐛 Debugging
 
@@ -343,7 +343,7 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 **Supported Debuggers:**
 - Go (Delve), and other languages via Mason
 
-### 📝 Documentation
+### 📝 Documentation & Notes
 
 #### Neogen (Documentation Generator)
 **Plugin**: `danymat/neogen`
@@ -355,6 +355,28 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 
 **Supported Languages:**
 - Python (Google docstrings), Go (godoc), Bash
+
+#### Obsidian (Note Taking)
+**Plugin**: `epwalsh/obsidian.nvim`
+
+- `<leader>on` - Create new note
+- `<leader>oo` - Open existing note
+- `<leader>os` - Search notes
+- `<leader>oq` - Quick switch between notes
+- `<leader>od` - Open today's daily note
+- `<leader>oy` - Open yesterday's daily note
+- `<leader>ob` - Show backlinks
+- `<leader>ol` - Show all links
+- `<leader>ot` - Insert template
+- `<leader>op` - Paste image
+- `<leader>or` - Rename current note
+
+**Features:**
+- Wiki-style linking: `[[note-name]]`
+- Markdown support with live preview
+- Daily notes functionality
+- Template system
+- Integration with Obsidian vault at `~/obsidian-vault`
 
 ### 🔧 Utilities
 
