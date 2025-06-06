@@ -48,7 +48,6 @@ require('lazy').setup({
   require 'kickstart/plugins/oil',
   require 'kickstart/plugins/fugitive',
   require 'kickstart/plugins/neogen',
-  require 'kickstart/plugins/neotest',
   require 'kickstart/plugins/trouble',
   require 'kickstart/plugins/undotree',
   require 'kickstart/plugins/lint-enhanced',

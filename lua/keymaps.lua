@@ -208,31 +208,6 @@ vim.keymap.set('n', '<leader>nF', function()
   require('neogen').generate { type = 'file' }
 end, { desc = '[N]eogen [F]ile documentation' })
 
--- [[ Neotest ]]
-vim.keymap.set('n', '<leader>tt', function()
-  require('neotest').run.run()
-end, { desc = '[T]est run nears[t]' })
-vim.keymap.set('n', '<leader>tf', function()
-  require('neotest').run.run(vim.fn.expand '%')
-end, { desc = '[T]est run [f]ile' })
-vim.keymap.set('n', '<leader>td', function()
-  require('neotest').run.run { strategy = 'dap' }
-end, { desc = '[T]est [d]ebug nearest' })
-vim.keymap.set('n', '<leader>ts', function()
-  require('neotest').run.stop()
-end, { desc = '[T]est [s]top' })
-vim.keymap.set('n', '<leader>ta', function()
-  require('neotest').run.attach()
-end, { desc = '[T]est [a]ttach' })
-vim.keymap.set('n', '<leader>to', function()
-  require('neotest').output.open { enter = true }
-end, { desc = '[T]est [o]utput' })
-vim.keymap.set('n', '<leader>tO', function()
-  require('neotest').output_panel.toggle()
-end, { desc = '[T]est [O]utput panel' })
-vim.keymap.set('n', '<leader>tS', function()
-  require('neotest').summary.toggle()
-end, { desc = '[T]est [S]ummary' })
 
 -- [[ Oil (File Explorer) ]]
 vim.keymap.set('n', '-', function()
