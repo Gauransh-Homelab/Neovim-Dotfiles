@@ -1,14 +1,14 @@
-# kickstart-modular.nvim
+# Arkhaya.nvim
 
 ## Introduction
 
-*This is a fork of [nvim-lua/kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) that moves from a single file to a multi file configuration.*
+_This is a fork of [nvim-lua/kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) that moves from a single file to a multi file configuration._
 
 A starting point for Neovim that is:
 
-* Small
-* Modular
-* Completely Documented
+- Small
+- Modular
+- Completely Documented
 
 **NOT** a Neovim distribution, but instead a starting point for your configuration.
 
@@ -16,7 +16,7 @@ A starting point for Neovim that is:
 
 ### Install Neovim
 
-Kickstart.nvim targets *only* the latest
+Kickstart.nvim targets _only_ the latest
 ['stable'](https://github.com/neovim/neovim/releases/tag/stable) and latest
 ['nightly'](https://github.com/neovim/neovim/releases/tag/nightly) of Neovim.
 If you are experiencing issues, please make sure you have the latest versions.
@@ -24,6 +24,7 @@ If you are experiencing issues, please make sure you have the latest versions.
 ### Install External Dependencies
 
 External Requirements:
+
 - Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`)
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation),
   [fd-find](https://github.com/sharkdp/fd#installation)
@@ -42,16 +43,15 @@ External Requirements:
 
 ### Install Kickstart
 
-> [!NOTE]
-> [Backup](#FAQ) your previous configuration (if any exists)
+> [!NOTE] > [Backup](#FAQ) your previous configuration (if any exists)
 
 Neovim's configurations are located under the following paths, depending on your OS:
 
-| OS | PATH |
-| :- | :--- |
-| Linux, MacOS | `$XDG_CONFIG_HOME/nvim`, `~/.config/nvim` |
-| Windows (cmd)| `%localappdata%\nvim\` |
-| Windows (powershell)| `$env:LOCALAPPDATA\nvim\` |
+| OS                   | PATH                                      |
+| :------------------- | :---------------------------------------- |
+| Linux, MacOS         | `$XDG_CONFIG_HOME/nvim`, `~/.config/nvim` |
+| Windows (cmd)        | `%localappdata%\nvim\`                    |
+| Windows (powershell) | `$env:LOCALAPPDATA\nvim\`                 |
 
 #### Recommended Step
 
@@ -159,16 +159,19 @@ All keybinds are centrally located in `lua/keymaps.lua`. The `<leader>` key is s
 ### 🔧 Core Editor
 
 #### Basic Navigation
+
 - `<Esc>` - Clear search highlights
 - `<C-h/j/k/l>` - Move focus between windows
 - `<Esc><Esc>` - Exit terminal mode
 
 #### Diagnostics
+
 - `<leader>q` - Open diagnostic quickfix list
 
 ### 📁 File Management
 
 #### Oil (File Explorer)
+
 **Plugin**: `stevearc/oil.nvim`
 
 - `-` - Open parent directory in Oil
@@ -183,6 +186,7 @@ All keybinds are centrally located in `lua/keymaps.lua`. The `<leader>` key is s
 ### 🔍 Search & Navigation
 
 #### Telescope (Fuzzy Finder)
+
 **Plugin**: `nvim-telescope/telescope.nvim`
 
 - `<leader>sh` - Search Help tags
@@ -200,6 +204,7 @@ All keybinds are centrally located in `lua/keymaps.lua`. The `<leader>` key is s
 - `<leader>sn` - Search Neovim configuration files
 
 #### Harpoon (Quick File Navigation)
+
 **Plugin**: `ThePrimeagen/harpoon`
 
 - `<leader>ha` - Add current file to Harpoon
@@ -214,6 +219,7 @@ All keybinds are centrally located in `lua/keymaps.lua`. The `<leader>` key is s
 ### 🗂️ Git Integration
 
 #### Fugitive (Git Commands)
+
 **Plugin**: `tpope/fugitive`
 
 - `<leader>gs` - Git Status
@@ -228,13 +234,16 @@ All keybinds are centrally located in `lua/keymaps.lua`. The `<leader>` key is s
 - `<leader>gr` - Git Read (checkout current file)
 
 #### Gitsigns (Git Status in Gutter)
+
 **Plugin**: `lewis6991/gitsigns.nvim`
 
 **Navigation:**
+
 - `]c` - Jump to next git change
 - `[c` - Jump to previous git change
 
 **Actions:**
+
 - `<leader>hs` - Stage hunk (normal and visual mode)
 - `<leader>hr` - Reset hunk (normal and visual mode)
 - `<leader>hS` - Stage entire buffer
@@ -246,12 +255,14 @@ All keybinds are centrally located in `lua/keymaps.lua`. The `<leader>` key is s
 - `<leader>hD` - Diff against last commit
 
 **Toggles:**
+
 - `<leader>tb` - Toggle git blame line
 - `<leader>tD` - Toggle git show deleted
 
 ### 💻 Language Server Protocol (LSP)
 
 #### LSP Actions
+
 **Plugin**: `neovim/nvim-lspconfig`
 
 All LSP keybinds are automatically set when an LSP attaches to a buffer:
@@ -268,6 +279,7 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 - `<leader>th` - Toggle inlay hints (if supported by LSP)
 
 #### Auto-completion
+
 **Plugin**: `saghen/blink.cmp`
 
 - `<Tab>` - Accept completion / Move forward in snippet
@@ -280,24 +292,29 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 ### 🎨 Code Formatting & Linting
 
 #### Conform (Code Formatting)
+
 **Plugin**: `stevearc/conform.nvim`
 
 - `<leader>f` - Format current buffer
 
 **Supported Languages:**
+
 - Lua (stylua), Python (isort, black), Go (gofumpt)
 - Shell/Bash (shfmt), YAML/JSON (prettier), Markdown (prettier)
 - Terraform (terraform_fmt), JavaScript/TypeScript (prettier)
 
 #### Lint (Code Linting)
+
 **Plugin**: `mfussenegger/nvim-lint`
 
 - `<leader>l` - Manually trigger linting
 
 **Auto-linting triggers:**
+
 - On file enter, save, and when leaving insert mode
 
 **Supported Linters:**
+
 - Python (flake8, mypy), Go (golangci-lint), Shell (shellcheck)
 - YAML (yamllint), Dockerfile (hadolint), Terraform (tflint)
 - Markdown (markdownlint), JSON (jsonlint)
@@ -305,6 +322,7 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 ### 🤖 AI & Development Tools
 
 #### GitHub Copilot (AI Code Completion)
+
 **Plugin**: `github/copilot.vim`
 
 - `<C-j>` - Accept Copilot suggestion (insert mode)
@@ -313,15 +331,18 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 - `<C-[>` - Previous Copilot suggestion (insert mode)
 
 **Setup:**
+
 - After installation, run `:Copilot auth` to authenticate
 - Suggestions appear automatically while typing
 
 #### Hardtime (Vim Habit Training)
+
 **Plugin**: `m4xshen/hardtime.nvim`
 
 - `<leader>th` - Toggle Hardtime on/off
 
 **Features:**
+
 - Prevents repeated use of arrow keys and hjkl
 - Encourages use of more efficient Vim motions
 - Configurable restrictions and hints
@@ -330,6 +351,7 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 ### 🐛 Debugging
 
 #### DAP (Debug Adapter Protocol)
+
 **Plugin**: `mfussenegger/nvim-dap`
 
 - `<F5>` - Start/Continue debugging
@@ -341,11 +363,13 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 - `<F7>` - Toggle debug UI
 
 **Supported Debuggers:**
+
 - Go (Delve), and other languages via Mason
 
 ### 📝 Documentation & Notes
 
 #### Neogen (Documentation Generator)
+
 **Plugin**: `danymat/neogen`
 
 - `<leader>nf` - Generate function documentation
@@ -354,9 +378,11 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 - `<leader>nF` - Generate file documentation
 
 **Supported Languages:**
+
 - Python (Google docstrings), Go (godoc), Bash
 
 #### Obsidian (Note Taking)
+
 **Plugin**: `epwalsh/obsidian.nvim`
 
 - `<leader>on` - Create new note
@@ -372,6 +398,7 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 - `<leader>or` - Rename current note
 
 **Features:**
+
 - Wiki-style linking: `[[note-name]]`
 - Markdown support with live preview
 - Daily notes functionality
@@ -381,6 +408,7 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 ### 🔧 Utilities
 
 #### Trouble (Diagnostics UI)
+
 **Plugin**: `folke/trouble.nvim`
 
 - `<leader>xx` - Toggle Trouble
@@ -391,6 +419,7 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 - `gR` - LSP references
 
 #### UndoTree (Undo History)
+
 **Plugin**: `mbbill/undotree`
 
 - `<leader>u` - Toggle undo tree
@@ -398,16 +427,19 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 ### 🎯 Text Objects & Editing
 
 #### Mini.nvim (Text Objects & Surround)
+
 **Plugin**: `echasnovski/mini.nvim`
 
 **Auto-pairs:** Automatic bracket/quote pairing
 **AI Text Objects:** Enhanced text objects (auto-configured)
-**Surround:** 
+**Surround:**
+
 - `saiw)` - Surround add inner word with parentheses
-- `sd'` - Surround delete quotes  
+- `sd'` - Surround delete quotes
 - `sr)'` - Surround replace parentheses with quotes
 
 #### Treesitter (Syntax Highlighting)
+
 **Plugin**: `nvim-treesitter/nvim-treesitter`
 
 - Enhanced syntax highlighting and code understanding
@@ -416,6 +448,7 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 ### 🎨 Theme
 
 #### Tokyo Night
+
 **Plugin**: `folke/tokyonight.nvim`
 
 Dark theme with multiple variants. Auto-configured.
@@ -423,6 +456,7 @@ Dark theme with multiple variants. Auto-configured.
 ### ❓ Help & Discovery
 
 #### Which-key (Keybind Help)
+
 **Plugin**: `folke/which-key.nvim`
 
 - Automatically shows available keybinds when you start typing a combination
@@ -484,12 +518,12 @@ LSP servers are automatically installed via Mason. To add a new language:
 
 ### FAQ
 
-* What should I do if I already have a pre-existing Neovim configuration?
-  * You should back it up and then delete all associated files.
-  * This includes your existing init.lua and the Neovim files in `~/.local`
+- What should I do if I already have a pre-existing Neovim configuration?
+  - You should back it up and then delete all associated files.
+  - This includes your existing init.lua and the Neovim files in `~/.local`
     which can be deleted with `rm -rf ~/.local/share/nvim/`
-* Can I keep my existing configuration in parallel to kickstart?
-  * Yes! You can use [NVIM_APPNAME](https://neovim.io/doc/user/starting.html#%24NVIM_APPNAME)`=nvim-NAME`
+- Can I keep my existing configuration in parallel to kickstart?
+  - Yes! You can use [NVIM_APPNAME](https://neovim.io/doc/user/starting.html#%24NVIM_APPNAME)`=nvim-NAME`
     to maintain multiple configurations. For example, you can install the kickstart
     configuration in `~/.config/nvim-kickstart` and create an alias:
     ```
@@ -499,8 +533,8 @@ LSP servers are automatically installed via Mason. To add a new language:
     config directory and the matching local directory
     `~/.local/share/nvim-kickstart`. You can apply this approach to any Neovim
     distribution that you would like to try out.
-* What if I want to "uninstall" this configuration:
-  * See [lazy.nvim uninstall](https://lazy.folke.io/usage#-uninstalling) information
+- What if I want to "uninstall" this configuration:
+  - See [lazy.nvim uninstall](https://lazy.folke.io/usage#-uninstalling) information
 
 ### Install Recipes
 
@@ -522,23 +556,27 @@ This requires:
 ```lua
 {'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 ```
+
 </details>
 <details><summary>Windows with gcc/make using chocolatey</summary>
 Alternatively, one can install gcc and make which don't require changing the config,
 the easiest way is to use choco:
 
 1. install [chocolatey](https://chocolatey.org/install)
-either follow the instructions on the page or use winget,
-run in cmd as **admin**:
+   either follow the instructions on the page or use winget,
+   run in cmd as **admin**:
+
 ```
 winget install --accept-source-agreements chocolatey.chocolatey
 ```
 
 2. install all requirements using choco, exit the previous cmd and
-open a new one so that choco path is set, and run in cmd as **admin**:
+   open a new one so that choco path is set, and run in cmd as **admin**:
+
 ```
 choco install -y neovim git ripgrep wget fd unzip gzip mingw make
 ```
+
 </details>
 <details><summary>WSL (Windows Subsystem for Linux)</summary>
 
@@ -549,9 +587,11 @@ sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
 sudo apt install make gcc ripgrep unzip git xclip neovim
 ```
+
 </details>
 
 #### Linux Install
+
 <details><summary>Ubuntu Install Steps</summary>
 
 ```
@@ -559,6 +599,7 @@ sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt update
 sudo apt install make gcc ripgrep unzip git xclip neovim
 ```
+
 </details>
 <details><summary>Debian Install Steps</summary>
 
@@ -576,12 +617,14 @@ sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
 # make it available in /usr/local/bin, distro installs to /usr/bin
 sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/
 ```
+
 </details>
 <details><summary>Fedora Install Steps</summary>
 
 ```
 sudo dnf install -y gcc make git ripgrep fd-find unzip neovim
 ```
+
 </details>
 
 <details><summary>Arch Install Steps</summary>
@@ -589,4 +632,6 @@ sudo dnf install -y gcc make git ripgrep fd-find unzip neovim
 ```
 sudo pacman -S --noconfirm --needed gcc make git ripgrep fd unzip neovim
 ```
+
 </details>
+
