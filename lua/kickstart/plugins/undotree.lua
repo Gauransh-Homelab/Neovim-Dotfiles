@@ -9,8 +9,5 @@ return {
     vim.g.undotree_SetFocusWhenToggle = 1
     vim.g.undotree_ShortIndicators = 1
     vim.g.undotree_DiffCommand = 'diff'
-    
-    -- Keymap
-    vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = '[U]ndo tree toggle' })
   end,
 }

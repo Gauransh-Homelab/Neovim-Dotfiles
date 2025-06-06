@@ -47,9 +47,5 @@ return {
       end,
     })
 
-    -- Manual lint keymap
-    vim.keymap.set('n', '<leader>l', function()
-      lint.try_lint()
-    end, { desc = '[L]int current file' })
   end,
 }

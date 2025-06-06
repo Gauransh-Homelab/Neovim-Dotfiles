@@ -108,19 +108,357 @@ nvim
 That's it! Lazy will install all the plugins you have. Use `:Lazy` to view
 the current plugin status. Hit `q` to close the window.
 
-#### Read The Friendly Documentation
+## Configuration Structure
 
-Read through the `init.lua` file in your configuration folder for more
-information about extending and exploring Neovim. That also includes
-examples of adding popularly requested plugins.
+This configuration is organized into modular files:
 
-> [!NOTE]
-> For more information about a particular plugin check its repository's documentation.
+```
+~/.config/nvim/
+├── init.lua                 # Main entry point
+├── lua/
+│   ├── keymaps.lua         # All keybindings (centralized)
+│   ├── options.lua         # Neovim options
+│   ├── lazy-bootstrap.lua  # Lazy.nvim setup
+│   ├── lazy-plugins.lua    # Plugin specifications
+│   └── kickstart/
+│       ├── health.lua      # Health check configuration
+│       └── plugins/        # Individual plugin configurations
+│           ├── autopairs.lua
+│           ├── blink-cmp.lua
+│           ├── conform.lua
+│           ├── debug.lua
+│           ├── fugitive.lua
+│           ├── gitsigns.lua
+│           ├── harpoon.lua
+│           ├── indent_line.lua
+│           ├── lint-enhanced.lua
+│           ├── lint.lua
+│           ├── lspconfig.lua
+│           ├── mini.lua
+│           ├── neo-tree.lua
+│           ├── neogen.lua
+│           ├── neotest.lua
+│           ├── oil.lua
+│           ├── telescope.lua
+│           ├── todo-comments.lua
+│           ├── tokyonight.lua
+│           ├── treesitter.lua
+│           ├── trouble.lua
+│           ├── undotree.lua
+│           └── which-key.lua
+└── custom/
+    └── plugins/
+        └── init.lua        # Your custom plugins
+```
 
+## Plugin Guide & Usage
 
-### Getting Started
+All keybinds are centrally located in `lua/keymaps.lua`. The `<leader>` key is set to `Space`.
 
-[The Only Video You Need to Get Started with Neovim](https://youtu.be/m8C0Cq9Uv9o)
+### 🔧 Core Editor
+
+#### Basic Navigation
+- `<Esc>` - Clear search highlights
+- `<C-h/j/k/l>` - Move focus between windows
+- `<Esc><Esc>` - Exit terminal mode
+
+#### Diagnostics
+- `<leader>q` - Open diagnostic quickfix list
+
+### 📁 File Management
+
+#### Neo-tree (File Explorer)
+**Plugin**: `nvim-neo-tree/neo-tree.nvim`
+
+- `\` - Toggle Neo-tree file explorer
+- Inside Neo-tree:
+  - `\` - Close Neo-tree window
+  - `<CR>` - Open file/directory
+  - Various navigation commands (see Neo-tree docs)
+
+#### Oil (Modern File Explorer)
+**Plugin**: `stevearc/oil.nvim`
+
+- `-` - Open parent directory in Oil
+- `<leader>-` - Open Oil in floating window
+- Inside Oil:
+  - `<CR>` - Select file/directory
+  - `<C-s>` - Open in vertical split
+  - `<C-h>` - Open in horizontal split
+  - `<C-t>` - Open in new tab
+  - `g?` - Show help with all keybinds
+
+### 🔍 Search & Navigation
+
+#### Telescope (Fuzzy Finder)
+**Plugin**: `nvim-telescope/telescope.nvim`
+
+- `<leader>sh` - Search Help tags
+- `<leader>sk` - Search Keymaps
+- `<leader>sf` - Search Files
+- `<leader>ss` - Search Select Telescope (builtin pickers)
+- `<leader>sw` - Search current Word under cursor
+- `<leader>sg` - Search by Live Grep
+- `<leader>sd` - Search Diagnostics
+- `<leader>sr` - Search Resume (previous search)
+- `<leader>s.` - Search Recent Files
+- `<leader><leader>` - Find existing buffers
+- `<leader>/` - Fuzzily search in current buffer
+- `<leader>s/` - Search in Open Files
+- `<leader>sn` - Search Neovim configuration files
+
+#### Harpoon (Quick File Navigation)
+**Plugin**: `ThePrimeagen/harpoon`
+
+- `<leader>ha` - Add current file to Harpoon
+- `<leader>hh` - Toggle Harpoon quick menu
+- `<leader>h1` - Navigate to Harpoon file 1
+- `<leader>h2` - Navigate to Harpoon file 2
+- `<leader>h3` - Navigate to Harpoon file 3
+- `<leader>h4` - Navigate to Harpoon file 4
+- `<leader>hp` - Navigate to previous Harpoon file
+- `<leader>hn` - Navigate to next Harpoon file
+
+### 🗂️ Git Integration
+
+#### Fugitive (Git Commands)
+**Plugin**: `tpope/fugitive`
+
+- `<leader>gs` - Git Status
+- `<leader>gd` - Git Diff (split view)
+- `<leader>gc` - Git Commit
+- `<leader>gb` - Git Blame
+- `<leader>gl` - Git Log
+- `<leader>gp` - Git Push
+- `<leader>gP` - Git Pull
+- `<leader>gf` - Git Fetch
+- `<leader>gw` - Git Write (stage current file)
+- `<leader>gr` - Git Read (checkout current file)
+
+#### Gitsigns (Git Status in Gutter)
+**Plugin**: `lewis6991/gitsigns.nvim`
+
+**Navigation:**
+- `]c` - Jump to next git change
+- `[c` - Jump to previous git change
+
+**Actions:**
+- `<leader>hs` - Stage hunk (normal and visual mode)
+- `<leader>hr` - Reset hunk (normal and visual mode)
+- `<leader>hS` - Stage entire buffer
+- `<leader>hu` - Undo stage hunk
+- `<leader>hR` - Reset entire buffer
+- `<leader>hp` - Preview hunk
+- `<leader>hb` - Blame line
+- `<leader>hd` - Diff against index
+- `<leader>hD` - Diff against last commit
+
+**Toggles:**
+- `<leader>tb` - Toggle git blame line
+- `<leader>tD` - Toggle git show deleted
+
+### 💻 Language Server Protocol (LSP)
+
+#### LSP Actions
+**Plugin**: `neovim/nvim-lspconfig`
+
+All LSP keybinds are automatically set when an LSP attaches to a buffer:
+
+- `grn` - Rename symbol
+- `gra` - Code actions (normal and visual mode)
+- `grr` - Go to references (via Telescope)
+- `gri` - Go to implementation (via Telescope)
+- `grd` - Go to definition (via Telescope)
+- `grD` - Go to declaration
+- `gO` - Open document symbols (via Telescope)
+- `gW` - Open workspace symbols (via Telescope)
+- `grt` - Go to type definition (via Telescope)
+- `<leader>th` - Toggle inlay hints (if supported by LSP)
+
+#### Auto-completion
+**Plugin**: `saghen/blink.cmp`
+
+- `<Tab>` - Accept completion / Move forward in snippet
+- `<S-Tab>` - Move backward in snippet
+- `<C-Space>` - Trigger completion menu
+- `<C-n>/<C-p>` or `<Up>/<Down>` - Navigate completion items
+- `<C-e>` - Close completion menu
+- `<C-k>` - Toggle signature help
+
+### 🎨 Code Formatting & Linting
+
+#### Conform (Code Formatting)
+**Plugin**: `stevearc/conform.nvim`
+
+- `<leader>f` - Format current buffer
+
+**Supported Languages:**
+- Lua (stylua), Python (isort, black), Go (gofumpt)
+- Shell/Bash (shfmt), YAML/JSON (prettier), Markdown (prettier)
+- Terraform (terraform_fmt), JavaScript/TypeScript (prettier)
+
+#### Lint (Code Linting)
+**Plugin**: `mfussenegger/nvim-lint`
+
+- `<leader>l` - Manually trigger linting
+
+**Auto-linting triggers:**
+- On file enter, save, and when leaving insert mode
+
+**Supported Linters:**
+- Python (flake8, mypy), Go (golangci-lint), Shell (shellcheck)
+- YAML (yamllint), Dockerfile (hadolint), Terraform (tflint)
+- Markdown (markdownlint), JSON (jsonlint)
+
+### 🧪 Testing
+
+#### Neotest (Test Runner)
+**Plugin**: `nvim-neotest/neotest`
+
+- `<leader>tt` - Run nearest test
+- `<leader>tf` - Run all tests in current file
+- `<leader>td` - Debug nearest test
+- `<leader>ts` - Stop test execution
+- `<leader>ta` - Attach to test process
+- `<leader>to` - Open test output
+- `<leader>tO` - Toggle test output panel
+- `<leader>tS` - Toggle test summary
+
+**Supported Test Frameworks:**
+- Python (pytest), Go (go test), Bash (bats)
+
+### 🐛 Debugging
+
+#### DAP (Debug Adapter Protocol)
+**Plugin**: `mfussenegger/nvim-dap`
+
+- `<F5>` - Start/Continue debugging
+- `<F1>` - Step into
+- `<F2>` - Step over
+- `<F3>` - Step out
+- `<leader>b` - Toggle breakpoint
+- `<leader>B` - Set conditional breakpoint
+- `<F7>` - Toggle debug UI
+
+**Supported Debuggers:**
+- Go (Delve), and other languages via Mason
+
+### 📝 Documentation
+
+#### Neogen (Documentation Generator)
+**Plugin**: `danymat/neogen`
+
+- `<leader>nf` - Generate function documentation
+- `<leader>nc` - Generate class documentation
+- `<leader>nt` - Generate type documentation
+- `<leader>nF` - Generate file documentation
+
+**Supported Languages:**
+- Python (Google docstrings), Go (godoc), Bash
+
+### 🔧 Utilities
+
+#### Trouble (Diagnostics UI)
+**Plugin**: `folke/trouble.nvim`
+
+- `<leader>xx` - Toggle Trouble
+- `<leader>xw` - Workspace diagnostics
+- `<leader>xd` - Document diagnostics
+- `<leader>xq` - Quickfix list
+- `<leader>xl` - Location list
+- `gR` - LSP references
+
+#### UndoTree (Undo History)
+**Plugin**: `mbbill/undotree`
+
+- `<leader>u` - Toggle undo tree
+
+### 🎯 Text Objects & Editing
+
+#### Mini.nvim (Text Objects & Surround)
+**Plugin**: `echasnovski/mini.nvim`
+
+**Auto-pairs:** Automatic bracket/quote pairing
+**AI Text Objects:** Enhanced text objects (auto-configured)
+**Surround:** 
+- `saiw)` - Surround add inner word with parentheses
+- `sd'` - Surround delete quotes  
+- `sr)'` - Surround replace parentheses with quotes
+
+#### Treesitter (Syntax Highlighting)
+**Plugin**: `nvim-treesitter/nvim-treesitter`
+
+- Enhanced syntax highlighting and code understanding
+- Auto-configured for many languages
+
+### 🎨 Theme
+
+#### Tokyo Night
+**Plugin**: `folke/tokyonight.nvim`
+
+Dark theme with multiple variants. Auto-configured.
+
+### ❓ Help & Discovery
+
+#### Which-key (Keybind Help)
+**Plugin**: `folke/which-key.nvim`
+
+- Automatically shows available keybinds when you start typing a combination
+- Shows grouped commands (e.g., all `<leader>g*` git commands)
+
+## Customization
+
+### Adding Your Own Plugins
+
+Add plugins to `lua/custom/plugins/init.lua`:
+
+```lua
+return {
+  {
+    'your-plugin/name',
+    config = function()
+      -- Plugin configuration
+    end,
+  },
+}
+```
+
+### Modifying Keybinds
+
+All keybinds are centralized in `lua/keymaps.lua`. To modify:
+
+1. Open `lua/keymaps.lua`
+2. Find the plugin section you want to modify
+3. Change the keybind or add new ones
+
+### Plugin Configuration
+
+Each plugin has its own file in `lua/kickstart/plugins/`. To modify a plugin:
+
+1. Navigate to the plugin file (e.g., `lua/kickstart/plugins/telescope.lua`)
+2. Modify the configuration options
+3. Keybinds are handled in `lua/keymaps.lua`, not in plugin files
+
+### Language Server Setup
+
+LSP servers are automatically installed via Mason. To add a new language:
+
+1. Edit `lua/kickstart/plugins/lspconfig.lua`
+2. Add the server to the `ensure_installed` list
+3. Configure the server in the `servers` table
+
+### Formatter/Linter Setup
+
+1. **Formatters**: Edit `lua/kickstart/plugins/conform.lua`
+2. **Linters**: Edit `lua/kickstart/plugins/lint-enhanced.lua`
+
+## Getting Started
+
+1. **Learn the basics**: `:help` or `<leader>sh` (Search Help)
+2. **Explore keybinds**: `<leader>sk` (Search Keymaps) or just start typing `<leader>` and Which-key will show options
+3. **Find files**: `<leader>sf` (Search Files) or `<leader>sg` (Search by Grep)
+4. **Git workflow**: `<leader>gs` (Git Status) and explore git keybinds with `<leader>g`
+5. **LSP features**: Use `gr*` commands for code navigation and `<leader>` for actions
 
 ### FAQ
 
@@ -141,19 +479,6 @@ examples of adding popularly requested plugins.
     distribution that you would like to try out.
 * What if I want to "uninstall" this configuration:
   * See [lazy.nvim uninstall](https://lazy.folke.io/usage#-uninstalling) information
-* Why is the kickstart `init.lua` a single file? Wouldn't it make sense to split it into multiple files?
-  * The main purpose of kickstart is to serve as a teaching tool and a reference
-    configuration that someone can easily use to `git clone` as a basis for their own.
-    As you progress in learning Neovim and Lua, you might consider splitting `init.lua`
-    into smaller parts. A fork of kickstart that does this while maintaining the
-    same functionality is available here:
-    * [kickstart-modular.nvim](https://github.com/dam9000/kickstart-modular.nvim)
-  * *NOTE: This is the fork that splits the configuration into smaller parts.*
-    The original repo with the single `init.lua` file is available here:
-    * [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
-  * Discussions on this topic can be found here:
-    * [Restructure the configuration](https://github.com/nvim-lua/kickstart.nvim/issues/218)
-    * [Reorganize init.lua into a multi-file setup](https://github.com/nvim-lua/kickstart.nvim/pull/473)
 
 ### Install Recipes
 
@@ -243,4 +568,3 @@ sudo dnf install -y gcc make git ripgrep fd-find unzip neovim
 sudo pacman -S --noconfirm --needed gcc make git ripgrep fd unzip neovim
 ```
 </details>
-

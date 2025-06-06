@@ -133,37 +133,5 @@ return {
       },
     }
 
-    -- Keymaps
-    vim.keymap.set('n', '<leader>tt', function()
-      require('neotest').run.run()
-    end, { desc = '[T]est run nearest' })
-
-    vim.keymap.set('n', '<leader>tf', function()
-      require('neotest').run.run(vim.fn.expand '%')
-    end, { desc = '[T]est run [F]ile' })
-
-    vim.keymap.set('n', '<leader>td', function()
-      require('neotest').run.run { strategy = 'dap' }
-    end, { desc = '[T]est [D]ebug nearest' })
-
-    vim.keymap.set('n', '<leader>ts', function()
-      require('neotest').run.stop()
-    end, { desc = '[T]est [S]top' })
-
-    vim.keymap.set('n', '<leader>ta', function()
-      require('neotest').run.attach()
-    end, { desc = '[T]est [A]ttach' })
-
-    vim.keymap.set('n', '<leader>to', function()
-      require('neotest').output.open { enter = true, auto_close = true }
-    end, { desc = '[T]est [O]utput' })
-
-    vim.keymap.set('n', '<leader>tO', function()
-      require('neotest').output_panel.toggle()
-    end, { desc = '[T]est [O]utput panel' })
-
-    vim.keymap.set('n', '<leader>tS', function()
-      require('neotest').summary.toggle()
-    end, { desc = '[T]est [S]ummary' })
   end,
 }

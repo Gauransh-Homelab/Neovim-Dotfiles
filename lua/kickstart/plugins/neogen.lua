@@ -22,24 +22,4 @@ return {
       },
     },
   },
-  config = function(_, opts)
-    require('neogen').setup(opts)
-    
-    -- Keymaps for documentation generation
-    vim.keymap.set('n', '<leader>nf', function()
-      require('neogen').generate { type = 'func' }
-    end, { desc = '[N]eogen [F]unction' })
-    
-    vim.keymap.set('n', '<leader>nc', function()
-      require('neogen').generate { type = 'class' }
-    end, { desc = '[N]eogen [C]lass' })
-    
-    vim.keymap.set('n', '<leader>nt', function()
-      require('neogen').generate { type = 'type' }
-    end, { desc = '[N]eogen [T]ype' })
-    
-    vim.keymap.set('n', '<leader>nF', function()
-      require('neogen').generate { type = 'file' }
-    end, { desc = '[N]eogen [F]ile' })
-  end,
 }
