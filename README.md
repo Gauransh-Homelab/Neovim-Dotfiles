@@ -120,36 +120,37 @@ This configuration is organized into modular files:
 │   ├── options.lua         # Neovim options
 │   ├── lazy-bootstrap.lua  # Lazy.nvim setup
 │   ├── lazy-plugins.lua    # Plugin specifications
-│   └── kickstart/
-│       ├── health.lua      # Health check configuration
-│       └── plugins/        # Individual plugin configurations
-│           ├── autopairs.lua
-│           ├── blink-cmp.lua
-│           ├── conform.lua
+│   ├── kickstart/
+│   │   ├── health.lua      # Health check configuration
+│   │   └── plugins/        # Core kickstart plugin configurations
+│   │       ├── autopairs.lua
+│   │       ├── blink-cmp.lua
+│   │       ├── conform.lua
+│   │       ├── debug.lua
+│   │       ├── gitsigns.lua
+│   │       ├── indent_line.lua
+│   │       ├── lint.lua
+│   │       ├── lspconfig.lua
+│   │       ├── mini.lua
+│   │       ├── telescope.lua
+│   │       ├── todo-comments.lua
+│   │       ├── tokyonight.lua  # Contains midnight.nvim theme
+│   │       ├── treesitter.lua
+│   │       └── which-key.lua
+│   └── custom/
+│       └── plugins/        # Custom plugin configurations
+│           ├── init.lua    # Your additional custom plugins
 │           ├── copilot.lua
-│           ├── debug.lua
+│           ├── dashboard.lua
 │           ├── fugitive.lua
-│           ├── gitsigns.lua
 │           ├── hardtime.lua
 │           ├── harpoon.lua
-│           ├── indent_line.lua
 │           ├── lint-enhanced.lua
-│           ├── lint.lua
-│           ├── lspconfig.lua
-│           ├── mini.lua
 │           ├── neogen.lua
 │           ├── obsidian.lua
 │           ├── oil.lua
-│           ├── telescope.lua
-│           ├── todo-comments.lua
-│           ├── tokyonight.lua  # Contains midnight.nvim theme
-│           ├── treesitter.lua
 │           ├── trouble.lua
-│           ├── undotree.lua
-│           └── which-key.lua
-└── custom/
-    └── plugins/
-        └── init.lua        # Your custom plugins
+│           └── undotree.lua
 ```
 
 ## Quick Start Guide

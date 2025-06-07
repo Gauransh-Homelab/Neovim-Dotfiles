@@ -44,19 +44,19 @@ require('lazy').setup({
   require 'kickstart/plugins/treesitter',
 
   -- DevSecOps plugins
-  require 'kickstart/plugins/harpoon',
-  require 'kickstart/plugins/oil',
-  require 'kickstart/plugins/fugitive',
-  require 'kickstart/plugins/neogen',
-  require 'kickstart/plugins/trouble',
-  require 'kickstart/plugins/undotree',
-  require 'kickstart/plugins/lint-enhanced',
+  require 'custom/plugins/harpoon',
+  require 'custom/plugins/oil',
+  require 'custom/plugins/fugitive',
+  require 'custom/plugins/neogen',
+  require 'custom/plugins/trouble',
+  require 'custom/plugins/undotree',
+  require 'custom/plugins/lint-enhanced',
 
   -- Additional plugins
-  require 'kickstart/plugins/copilot',
-  require 'kickstart/plugins/obsidian',
-  require 'kickstart/plugins/hardtime',
-  require 'kickstart/plugins/dashboard',
+  require 'custom/plugins/copilot',
+  require 'custom/plugins/obsidian',
+  require 'custom/plugins/hardtime',
+  require 'custom/plugins/dashboard',
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
