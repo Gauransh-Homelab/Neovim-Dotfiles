@@ -13,7 +13,6 @@ return {
         '    ██║  ██║██║  ██║██║  ██╗██║  ██║██║  ██║   ██║   ██║  ██║',
         '    ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝',
         '',
-        '                        Welcome to Neovim',
         '',
       }
     end
@@ -45,6 +44,15 @@ return {
             key = 'd',
           },
         },
+        week_header = {
+          enable = false,
+        },
+        center = {
+          enable = true,
+        },
+      },
+      opts = {
+        position = 'center',
       },
     }
   end,
