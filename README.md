@@ -142,7 +142,7 @@ This configuration is organized into modular files:
 │           ├── oil.lua
 │           ├── telescope.lua
 │           ├── todo-comments.lua
-│           ├── tokyonight.lua
+│           ├── tokyonight.lua  # Contains midnight.nvim theme
 │           ├── treesitter.lua
 │           ├── trouble.lua
 │           ├── undotree.lua
@@ -151,6 +151,21 @@ This configuration is organized into modular files:
     └── plugins/
         └── init.lua        # Your custom plugins
 ```
+
+## Quick Start Guide
+
+### First Steps
+1. **Start Neovim**: Run `nvim` to see the dashboard
+2. **Learn the Leader Key**: `<leader>` is mapped to `Space` - most commands start with this
+3. **Get Help**: Press `<leader>sh` to search help, or `<leader>sk` to see all keybindings
+4. **Find Files**: Use `<leader>sf` to find files in your project
+5. **Explore Commands**: Start typing `<leader>` and Which-key will show available options
+
+### Essential Navigation
+- **Between Windows**: `<C-h/j/k/l>` (Ctrl + direction)
+- **File Explorer**: `-` opens Oil file manager
+- **Quick File Switch**: `<leader><leader>` shows open buffers
+- **Search Everything**: `<leader>sg` for live grep across files
 
 ## Plugin Guide & Usage
 
@@ -282,12 +297,22 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 
 **Plugin**: `saghen/blink.cmp`
 
-- `<Tab>` - Accept completion / Move forward in snippet
-- `<S-Tab>` - Move backward in snippet
-- `<C-Space>` - Trigger completion menu
+**Features:**
+- Lightning-fast completion with Rust fuzzy matching (fallback to Lua)
+- LSP integration for intelligent code completion
+- Snippet support with LuaSnip integration
+- Signature help while typing function arguments
+
+**Keybindings:**
+- `<C-y>` - Accept completion (yes)
+- `<Tab>/<S-Tab>` - Move forward/backward in snippet expansion
+- `<C-Space>` - Open completion menu or toggle docs
 - `<C-n>/<C-p>` or `<Up>/<Down>` - Navigate completion items
 - `<C-e>` - Close completion menu
 - `<C-k>` - Toggle signature help
+
+**Sources:**
+- LSP servers, file paths, snippets, and Lua development integration
 
 ### 🎨 Code Formatting & Linting
 
@@ -325,7 +350,7 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 
 **Plugin**: `github/copilot.vim`
 
-- `<C-j>` - Accept Copilot suggestion (insert mode)
+- `<C-J>` - Accept Copilot suggestion (insert mode)
 - `<C-]>` - Dismiss Copilot suggestion (insert mode)
 - `<C-\>` - Next Copilot suggestion (insert mode)
 - `<C-[>` - Previous Copilot suggestion (insert mode)
@@ -334,6 +359,7 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 
 - After installation, run `:Copilot auth` to authenticate
 - Suggestions appear automatically while typing
+- Tab mapping disabled for compatibility with completion plugin
 
 #### Hardtime (Vim Habit Training)
 
@@ -445,13 +471,55 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 - Enhanced syntax highlighting and code understanding
 - Auto-configured for many languages
 
+#### Dashboard (Startup Screen)
+
+**Plugin**: `nvimdev/dashboard-nvim`
+
+Beautiful startup screen with ASCII art and quick shortcuts:
+
+- `f` - Find files (via Telescope)
+- `u` - Update plugins (via Lazy)
+- `a` - Apps (via Telescope)
+- `d` - Dotfiles (via Telescope)
+
+**Features:**
+- Custom "ARKHAYA" ASCII art
+- Quick access to common actions
+- Beautiful themed interface
+
+#### Todo Comments
+
+**Plugin**: `folke/todo-comments.nvim`
+
+Highlights and provides navigation for TODO/FIXME/etc. comments in your code.
+
+**Highlights:**
+- `TODO:`, `HACK:`, `BUG:`, `FIXME:`, `WARNING:`, `PERF:`, `NOTE:`, `TEST:`
+
+**Navigation:**
+- `]t` - Next todo comment
+- `[t` - Previous todo comment
+- `:TodoTelescope` - Search all todos via Telescope
+
+#### Indent Blankline
+
+**Plugin**: `lukas-reineke/indent-blankline.nvim`
+
+Shows indent guides to help visualize code structure. Auto-configured with scope highlighting.
+
+#### Auto-pairs
+
+**Plugin**: `windwp/nvim-autopairs`
+
+Automatically pairs brackets, quotes, and other characters. Smart pairing with Treesitter integration.
+
 ### 🎨 Theme
 
-#### Tokyo Night
+#### Midnight
 
-**Plugin**: `folke/tokyonight.nvim`
+**Plugin**: `dasupradyumna/midnight.nvim`
 
-Dark theme with multiple variants. Auto-configured.
+A modern dark colorscheme for Neovim with carefully crafted colors and excellent readability. Loaded with high priority to ensure proper theme initialization.
 
 ### ❓ Help & Discovery
 
@@ -510,11 +578,24 @@ LSP servers are automatically installed via Mason. To add a new language:
 
 ## Getting Started
 
-1. **Learn the basics**: `:help` or `<leader>sh` (Search Help)
-2. **Explore keybinds**: `<leader>sk` (Search Keymaps) or just start typing `<leader>` and Which-key will show options
-3. **Find files**: `<leader>sf` (Search Files) or `<leader>sg` (Search by Grep)
-4. **Git workflow**: `<leader>gs` (Git Status) and explore git keybinds with `<leader>g`
-5. **LSP features**: Use `gr*` commands for code navigation and `<leader>` for actions
+See the [Quick Start Guide](#quick-start-guide) above for immediate setup steps.
+
+### Development Workflow
+1. **Open your project**: Use `<leader>sf` to find and open files
+2. **Navigate code**: Use LSP features like `grd` (go to definition) and `grr` (find references)
+3. **Git workflow**: `<leader>gs` for status, stage hunks with `<leader>hs`
+4. **Format & lint**: `<leader>f` to format, automatic linting on save
+5. **Debug**: Set breakpoints with `<leader>b`, start debugging with `<F5>`
+6. **Note-taking**: Use `<leader>on` for Obsidian notes integration
+
+### Plugin Categories
+- **📁 File Management**: Oil, Telescope, Harpoon
+- **🗂️ Git**: Fugitive, Gitsigns  
+- **💻 LSP**: Language servers, completion, diagnostics
+- **🎨 Formatting**: Conform, Lint, Treesitter
+- **🤖 AI Tools**: GitHub Copilot, documentation generation
+- **📝 Notes**: Obsidian integration with daily notes
+- **🐛 Debug**: DAP with UI for various languages
 
 ### FAQ
 
