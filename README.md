@@ -146,6 +146,7 @@ This configuration is organized into modular files:
 │           ├── hardtime.lua
 │           ├── harpoon.lua
 │           ├── lint-enhanced.lua
+│           ├── markdown-preview.lua
 │           ├── neogen.lua
 │           ├── obsidian.lua
 │           ├── oil.lua
@@ -431,6 +432,23 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 - Daily notes functionality
 - Template system
 - Integration with Obsidian vault at `~/obsidian-vault`
+
+#### Markdown Preview (Live Markdown Preview)
+
+**Plugin**: `iamcco/markdown-preview.nvim`
+
+- `<leader>mp` - Start Markdown preview in browser
+- `<leader>ms` - Stop Markdown preview
+- `<leader>mt` - Toggle Markdown preview
+
+**Features:**
+
+- Real-time Markdown preview in browser
+- Support for math equations (KaTeX)
+- UML diagrams support (mermaid, plantuml)
+- Dark theme by default
+- Synchronized scrolling between editor and preview
+- Custom CSS support
 
 ### 🔧 Utilities
 
