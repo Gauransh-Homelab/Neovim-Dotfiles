@@ -192,7 +192,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 -- [[ Hardtime (Vim Habit Breaking) ]]
 -- Note: Hardtime is configured to be enabled by default in the plugin config
 -- Toggle commands are available if needed:
-vim.keymap.set('n', '<leader>th', function()
+vim.keymap.set('n', '<leader>tH', function()
   require('hardtime').toggle()
 end, { desc = '[T]oggle [H]ardtime' })
 

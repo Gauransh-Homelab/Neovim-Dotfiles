@@ -367,7 +367,7 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 
 **Plugin**: `m4xshen/hardtime.nvim`
 
-- `<leader>th` - Toggle Hardtime on/off
+- `<leader>tH` - Toggle Hardtime on/off
 
 **Features:**
 
