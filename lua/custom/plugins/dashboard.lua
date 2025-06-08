@@ -34,13 +34,13 @@ return {
           {
             desc = ' Apps',
             group = 'DiagnosticHint',
-            action = 'Telescope app',
+            action = 'Telescope find_files',
             key = 'a',
           },
           {
             desc = ' dotfiles',
             group = 'Number',
-            action = 'Telescope dotfiles',
+            action = 'Telescope find_files cwd=~/.config',
             key = 'd',
           },
         },
