@@ -22,7 +22,13 @@ return {
       config = {
         header = get_ascii_art(),
         shortcut = {
-          { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
+          { 
+            icon = '󰊳 ',
+            desc = 'Update',
+            group = '@property',
+            action = 'Lazy update',
+            key = 'u'
+          },
           {
             icon = ' ',
             icon_hl = '@variable',
@@ -32,13 +38,15 @@ return {
             key = 'f',
           },
           {
-            desc = ' Apps',
+            icon = ' ',
+            desc = 'Apps',
             group = 'DiagnosticHint',
             action = 'Telescope find_files',
             key = 'a',
           },
           {
-            desc = ' dotfiles',
+            icon = ' ',
+            desc = 'dotfiles',
             group = 'Number',
             action = 'Telescope find_files cwd=~/.config',
             key = 'd',
