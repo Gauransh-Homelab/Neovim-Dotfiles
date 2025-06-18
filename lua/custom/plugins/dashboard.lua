@@ -55,12 +55,6 @@ return {
         week_header = {
           enable = false,
         },
-        center = {
-          enable = true,
-        },
-      },
-      opts = {
-        position = 'center',
       },
     }
   end,
