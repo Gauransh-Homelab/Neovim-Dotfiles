@@ -45,10 +45,10 @@ return {
       ["<C-P>"] = { "n", "x" },
     },
     disabled_keys = {
-      ["<Up>"] = { "", "i" },
-      ["<Down>"] = { "", "i" },
-      ["<Left>"] = { "", "i" },
-      ["<Right>"] = { "", "i" },
+      ["<Up>"] = { "" },
+      ["<Down>"] = { "" },
+      ["<Left>"] = { "" },
+      ["<Right>"] = { "" },
     },
     disabled_filetypes = {
       "qf", "netrw", "NvimTree", "lazy", "mason", "oil", "telescope"
