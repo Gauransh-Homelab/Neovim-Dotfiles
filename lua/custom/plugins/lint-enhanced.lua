@@ -14,7 +14,6 @@ return {
       dockerfile = { 'hadolint' },
       terraform = { 'tflint' },
       markdown = { 'markdownlint' },
-      json = { 'jsonlint' },
     }
 
     -- Custom linter configurations
