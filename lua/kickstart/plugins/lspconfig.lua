@@ -218,6 +218,30 @@ return {
         terraformls = {},
         -- TOML for configuration files
         taplo = {},
+        -- PowerShell DevSecOps scripts
+        powershell_es = {
+          shell = (function()
+            if vim.fn.executable 'pwsh' == 1 then
+              return 'pwsh'
+            end
+            if vim.fn.has 'win32' == 1 then
+              return 'powershell.exe'
+            end
+            return 'pwsh'
+          end)(),
+          filetypes = { 'ps1', 'psm1', 'psd1' },
+          bundle_path = vim.fs.joinpath(vim.fn.stdpath 'data', 'mason', 'packages', 'powershell-editor-services'),
+          init_options = {
+            enableProfileLoading = false, -- avoids startup issues from interactive profile scripts
+          },
+          settings = {
+            powershell = {
+              codeFormatting = {
+                Preset = 'OTBS',
+              },
+            },
+          },
+        },
         -- Markdown
         marksman = {},
 
@@ -264,6 +288,7 @@ return {
         'markdownlint', -- Markdown linter
         'hadolint', -- Dockerfile linter
         'tflint', -- Terraform linter
+        'powershell-editor-services', -- PowerShell LSP backend
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
