@@ -143,7 +143,6 @@ This configuration is organized into modular files:
 │           ├── copilot.lua
 │           ├── dashboard.lua
 │           ├── fugitive.lua
-│           ├── hardtime.lua
 │           ├── harpoon.lua
 │           ├── lint-enhanced.lua
 │           ├── markdown-preview.lua
@@ -362,19 +361,6 @@ All LSP keybinds are automatically set when an LSP attaches to a buffer:
 - After installation, run `:Copilot auth` to authenticate
 - Suggestions appear automatically while typing
 - Tab mapping disabled for compatibility with completion plugin
-
-#### Hardtime (Vim Habit Training)
-
-**Plugin**: `m4xshen/hardtime.nvim`
-
-- `<leader>tH` - Toggle Hardtime on/off
-
-**Features:**
-
-- Prevents repeated use of arrow keys and hjkl
-- Encourages use of more efficient Vim motions
-- Configurable restrictions and hints
-- Disabled in certain filetypes (telescope, oil, etc.)
 
 ### 🐛 Debugging
 
@@ -734,4 +720,3 @@ sudo pacman -S --noconfirm --needed gcc make git ripgrep fd unzip neovim
 ```
 
 </details>
-

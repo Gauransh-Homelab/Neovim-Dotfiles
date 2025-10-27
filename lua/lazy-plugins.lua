@@ -55,7 +55,6 @@ require('lazy').setup({
   -- Additional plugins
   require 'custom/plugins/copilot',
   require 'custom/plugins/obsidian',
-  require 'custom/plugins/hardtime',
   require 'custom/plugins/dashboard',
   require 'custom/plugins/markdown-preview',
 
