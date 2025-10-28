@@ -78,7 +78,6 @@ return {
         { '<leader>tb', desc = '[T]oggle git show [b]lame line' },
         { '<leader>tD', desc = '[T]oggle git show [D]eleted' },
         { '<leader>th', desc = '[T]oggle Inlay [H]ints' },
-        { '<leader>tH', desc = '[T]oggle [H]ardtime' },
 
         -- Git groups
         { '<leader>g', group = '[G]it' },
