@@ -43,6 +43,8 @@ require('lazy').setup({
 
   require 'kickstart.plugins.treesitter',
 
+  require 'kickstart.plugins.comment',
+
   -- DevSecOps plugins
   require 'custom/plugins/harpoon',
   require 'custom/plugins/oil',
