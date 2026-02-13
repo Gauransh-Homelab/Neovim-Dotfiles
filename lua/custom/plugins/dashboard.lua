@@ -22,12 +22,12 @@ return {
       config = {
         header = get_ascii_art(),
         shortcut = {
-          { 
+          {
             icon = '󰊳 ',
             desc = 'Update',
             group = '@property',
             action = 'Lazy update',
-            key = 'u'
+            key = 'u',
           },
           {
             icon = ' ',
@@ -52,9 +52,9 @@ return {
             key = 'd',
           },
         },
-        week_header = {
-          enable = false,
-        },
+        project = { enable = false },
+        mru = { limit = 10 },
+        footer = { '' },
       },
     }
   end,
