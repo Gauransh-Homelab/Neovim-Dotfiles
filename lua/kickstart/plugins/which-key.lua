@@ -111,7 +111,7 @@ return {
         { '<leader>h2', desc = 'Harpoon file 2' },
         { '<leader>h3', desc = 'Harpoon file 3' },
         { '<leader>h4', desc = 'Harpoon file 4' },
-        { '<leader>hp', desc = 'Harpoon [p]revious' },
+        { '<leader>hP', desc = 'Harpoon [P]revious' },
         { '<leader>hn', desc = 'Harpoon [n]ext' },
 
         -- Debug group
