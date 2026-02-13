@@ -1,26 +1,20 @@
 return {
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
     lazy = false,
     build = ':TSUpdate',
     config = function()
       local wanted = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
-      local installed = require('nvim-treesitter.info').installed_parsers()
 
-      -- Only install parsers that are not already installed
-      local to_install = vim.tbl_filter(function(lang)
-        return not vim.tbl_contains(installed, lang)
-      end, wanted)
+      require('nvim-treesitter').install(wanted)
 
-      if #to_install > 0 then
-        vim.cmd('TSInstall ' .. table.concat(to_install, ' '))
-      end
-
-      ---@diagnostic disable-next-line: missing-fields
-      require('nvim-treesitter.configs').setup {
-        highlight = { enable = true },
-        indent = { enable = true },
-      }
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = wanted,
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
+      })
     end,
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
