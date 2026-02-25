@@ -7,7 +7,13 @@ return {
     config = function()
       local wanted = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
 
-      require('nvim-treesitter').install(wanted)
+      local installed = require('nvim-treesitter.config').get_installed()
+      local to_install = vim.tbl_filter(function(p)
+        return not vim.tbl_contains(installed, p)
+      end, wanted)
+      if #to_install > 0 then
+        require('nvim-treesitter.install').install(to_install)
+      end
 
       vim.api.nvim_create_autocmd('FileType', {
         pattern = wanted,
