@@ -54,6 +54,8 @@ require('lazy').setup({
   require 'custom/plugins/undotree',
   require 'custom/plugins/lint-enhanced',
 
+  require 'custom/plugins/spectre',
+
   -- Additional plugins
   require 'custom/plugins/copilot',
   require 'custom/plugins/obsidian',

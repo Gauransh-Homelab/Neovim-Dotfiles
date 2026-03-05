@@ -282,6 +282,10 @@ vim.keymap.set('n', 'gR', function()
   require('trouble').toggle 'lsp_references'
 end, { desc = 'Trouble LSP [R]eferences' })
 
+-- [[ Spectre (Find & Replace) ]]
+vim.keymap.set('n', '<leader>S', function() require('spectre').toggle() end, { desc = '[S]pectre toggle' })
+vim.keymap.set('n', '<leader>sw', function() require('spectre').open_visual({ select_word = true }) end, { desc = '[S]pectre search current [w]ord' })
+
 -- [[ UndoTree ]]
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = '[U]ndo tree toggle' })
 
