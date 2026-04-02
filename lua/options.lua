@@ -71,4 +71,7 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
+-- Don't add a newline at the end of files on save
+vim.o.fixendofline = false
+
 -- vim: ts=2 sts=2 sw=2 et
