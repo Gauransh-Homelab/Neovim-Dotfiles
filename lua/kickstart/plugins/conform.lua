@@ -1,10 +1,17 @@
+---@module 'lazy'
+---@type LazySpec
 return {
   { -- Autoformat
     'stevearc/conform.nvim',
     cmd = { 'ConformInfo' },
+    ---@module 'conform'
+    ---@type conform.setupOpts
     opts = {
       notify_on_error = false,
       format_on_save = false,
+      default_format_opts = {
+        lsp_format = 'fallback',
+      },
       formatters_by_ft = {
         lua = { 'stylua' },
         -- DevSecOps formatters
