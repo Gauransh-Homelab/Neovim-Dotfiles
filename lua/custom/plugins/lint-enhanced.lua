@@ -86,7 +86,7 @@ return {
     }
 
     lint.linters_by_ft = {
-      python = { 'flake8', 'mypy' },
+      python = { 'flake8' },
       go = { 'golangcilint' },
       sh = { 'shellcheck' },
       bash = { 'shellcheck' },

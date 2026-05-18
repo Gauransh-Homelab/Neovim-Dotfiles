@@ -186,18 +186,7 @@ return {
             },
           },
         },
-        pyright = {
-          settings = {
-            python = {
-              analysis = {
-                autoSearchPaths = true,
-                diagnosticMode = 'workspace',
-                useLibraryCodeForTypes = true,
-                typeCheckingMode = 'strict',
-              },
-            },
-          },
-        },
+        pyrefly = {},
         gopls = {
           settings = {
             gopls = {
@@ -285,7 +274,6 @@ return {
         'black', -- Python formatter
         'isort', -- Python import sorter
         'flake8', -- Python linter
-        'mypy', -- Python type checker
         'gofumpt', -- Go formatter
         'golangci-lint', -- Go linter
         'shellcheck', -- Shell script linter
