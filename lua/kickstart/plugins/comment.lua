@@ -8,6 +8,14 @@ return {
     'JoosepAlviste/nvim-ts-context-commentstring', -- For JSX/TSX support
   },
   config = function()
+    -- Skip the legacy nvim-treesitter module registration (that plugin is gone).
+    vim.g.skip_ts_context_commentstring_module = true
+
+    -- Disable the CursorHold autocmd that recalculates commentstring — it errors
+    -- ("language_tree is nil") on buffers without a treesitter parser. We get
+    -- context-aware commenting on-demand via Comment.nvim's pre_hook below.
+    require('ts_context_commentstring').setup { enable_autocmd = false }
+
     local comment = require('Comment')
     local ts_context_commentstring = require('ts_context_commentstring.integrations.comment_nvim')
 
