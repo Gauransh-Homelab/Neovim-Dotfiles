@@ -34,7 +34,8 @@ require('lazy').setup({
 
   require 'kickstart.plugins.mini',
 
-  require 'kickstart.plugins.treesitter',
+  -- treesitter: dropped in favor of nvim 0.12's built-in treesitter. Plugin
+  -- is still pulled in transitively by neogen (custom/plugins/neogen.lua).
 
   require 'kickstart.plugins.comment',
 
