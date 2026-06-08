@@ -19,6 +19,37 @@ return {
     local comment = require('Comment')
     local ts_context_commentstring = require('ts_context_commentstring.integrations.comment_nvim')
 
+    -- Guarded pre_hook: on Neovim 0.11+, vim.treesitter.get_parser() returns nil
+    -- (instead of erroring) for buffers without a parser, which makes the upstream
+    -- hook crash with "attempt to index local 'language_tree' (a nil value)" and
+    -- surfaces as "[Comment.nvim] nil". pcall it and fall back (return nil) so
+    -- Comment.nvim uses the buffer's native 'commentstring' for those filetypes
+    -- (hcl/terragrunt, python, json, yaml, sh, …). Context-aware commenting still
+    -- works wherever a parser exists (JSX/TSX, etc.).
+    local ts_pre_hook = ts_context_commentstring.create_pre_hook()
+    local function safe_pre_hook(ctx)
+      local ok, result = pcall(ts_pre_hook, ctx)
+      if ok then
+        return result
+      end
+    end
+
+    -- Comment.nvim's own treesitter-based commentstring calc (Comment/ft.lua) has
+    -- the SAME Neovim 0.11+ regression: pcall(vim.treesitter.get_parser, …) now
+    -- SUCCEEDS with a nil parser instead of erroring, so the upstream `if not ok`
+    -- guard is skipped and it crashes indexing the nil tree ("[Comment.nvim] nil").
+    -- Comment.nvim is unmaintained, so patch ft.calculate to also bail out when the
+    -- parser is nil, falling back to the filetype's native commentstring.
+    local ft = require('Comment.ft')
+    local orig_ft_calculate = ft.calculate
+    rawset(ft, 'calculate', function(ctx)
+      local ok, parser = pcall(vim.treesitter.get_parser, vim.api.nvim_get_current_buf())
+      if not ok or not parser then
+        return ft.get(vim.bo.filetype, ctx.ctype)
+      end
+      return orig_ft_calculate(ctx)
+    end)
+
     comment.setup {
       -- Add a space between comment and the line
       padding = true,
@@ -63,8 +94,8 @@ return {
         extra = true,
       },
 
-      -- Pre-hook for ts_context_commentstring integration
-      pre_hook = ts_context_commentstring.create_pre_hook(),
+      -- Pre-hook for ts_context_commentstring integration (guarded; see above)
+      pre_hook = safe_pre_hook,
     }
 
     -- Additional keybindings for VS Code-like experience
