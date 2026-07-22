@@ -93,7 +93,6 @@ return {
       yaml = { 'yamllint' },
       dockerfile = { 'hadolint' },
       terraform = { 'tflint' },
-      markdown = { 'markdownlint' },
       ps1 = { 'psscriptanalyzer' },
       psm1 = { 'psscriptanalyzer' },
       psd1 = { 'psscriptanalyzer' },
